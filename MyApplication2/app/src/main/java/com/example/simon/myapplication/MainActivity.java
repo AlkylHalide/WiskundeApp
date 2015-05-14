@@ -2,22 +2,23 @@ package com.example.simon.myapplication;
 
 import android.app.Activity;
 import android.content.*;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.*;
 import android.widget.*;
-
-import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.plus.Plus;
-import com.google.android.gms.plus.PlusShare;
-import com.google.android.gms.plus.model.people.Person;
-import com.koushikdutta.ion.Ion;
+import com.google.android.gms.common.*;
+import com.google.android.gms.common.api.*;
+import com.google.android.gms.plus.*;
+import com.google.android.gms.plus.model.people.*;
+import com.koushikdutta.ion.*;
 
 
 public class MainActivity extends Activity implements
         GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener,
         View.OnClickListener {
+
+    MediaPlayer mySound;
 
     public final static String EXTRA_MESSAGE = "com.mycompany.myfirstapp.MESSAGE";
 
@@ -58,10 +59,20 @@ public class MainActivity extends Activity implements
 
         ImageView profileImage = (ImageView) findViewById(R.id.profile_image);
 
-        Ion.with(profileImage)
+        /*Ion.with(profileImage)
                 .fitCenter()
-                .load("http://coolwildlife.com/wp-content/uploads/galleries/post-1593/Brown%20Bear%20Picture%20001.jpg");
+                .load("http://media.salon.com/2013/05/original.jpg");*/
+
+        new DownloadImageTask(profileImage).execute("http://media.salon.com/2013/05/original.jpg");
+
+        mySound = MediaPlayer.create(this, R.raw.adje_gangsta);
+        mySound.start();
         }
+
+    protected void onPause(){
+        super.onPause();
+        mySound.release();
+    }
 
     @Override
     protected void onStart() {
@@ -73,6 +84,7 @@ public class MainActivity extends Activity implements
     protected void onStop() {
         super.onStop();
         mGoogleApiClient.disconnect();
+        mySound.release();
     }
 
     @Override
@@ -170,6 +182,11 @@ public class MainActivity extends Activity implements
                 .getIntent();
 
         startActivityForResult(shareIntent, 0);
+    }
+
+    public void openPreferences(View view){
+        Intent intent = new Intent(this, Settings.class);
+        startActivity(intent);
     }
 
     @Override

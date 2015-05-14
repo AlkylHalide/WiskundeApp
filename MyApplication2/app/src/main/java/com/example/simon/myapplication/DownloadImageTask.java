@@ -1,12 +1,10 @@
 package com.example.simon.myapplication;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.os.AsyncTask;
-import android.util.Log;
-import android.widget.ImageView;
-
-import java.io.InputStream;
+import android.graphics.*;
+import android.os.*;
+import android.util.*;
+import android.widget.*;
+import java.io.*;
 
 /**
  * Created by Simon on 12/05/15.

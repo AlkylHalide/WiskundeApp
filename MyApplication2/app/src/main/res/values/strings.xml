@@ -8,8 +8,17 @@
     <string name="share_button">Share on Google+</string>
     <color name="black">#000000</color>
 
+    <string name="pref_audio_title">Audio Settings</string>
+    <string name="pref_music">Enable Music</string>
+    <string name="pref_sound">Enable Sound</string>
+    <string name="pref_audio_summ">Enable background music within this App.</string>
+    <string name="pref_sound_summ">Enable in-game sound</string>
+    <string name="settings_button">Settings</string>
+
+
 
 
     <string name="facebook_app_id">1452952558331489</string>
     <string name="hello_world">Hello world!</string>
+    <string name="title_activity_settings">Settings</string>
 </resources>

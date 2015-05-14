@@ -34,29 +34,14 @@
 
     <ImageView
         android:id="@+id/profile_image"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_width="50dp"
+        android:layout_height="50dp"/>
 
-    <!--<Button
-        android:id="@+id/sign_in_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingLeft="70dp"
-        android:paddingRight="15dp"
-        android:paddingTop="30dp"
-        android:paddingBottom="30dp"
-        android:text="@string/sign_in_button"
-        android:textColor="#FFFFFF"
-        android:onClick="sendMessage"
-        android:background="@mipmap/ic_gplus_sing_in"/>-->
-
-
-    <!--<com.facebook.login.widget.LoginButton
-        android:id="@+id/login_button"
+    <Button
+        android:id="@+id/settings_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="30dp"
-        android:layout_marginBottom="30dp" />-->
-
+        android:text="@string/settings_button"
+        android:onClick="openPreferences"
+        />
 </LinearLayout>
