@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="/home/evert/Android/Sdk/extras/android/m2repository/com/android/support/support-v4/18.0.0/support-v4-18.0.0.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="44ec51e9d395a47aab135e5e1b556c0007442156">
+        <dex dex="/home/evert/AndroidStudioProjects/STV1/app/build/intermediates/pre-dexed/debug/support-v4-18.0.0-486ded9b10aed23d27093d5b13cc46ea299282c0.jar" />
+    </item>
+
+</items>
