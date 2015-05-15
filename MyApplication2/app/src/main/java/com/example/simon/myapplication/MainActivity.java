@@ -2,16 +2,15 @@ package com.example.simon.myapplication;
 
 import android.app.Activity;
 import android.content.*;
-import android.media.MediaPlayer;
+import android.media.*;
 import android.os.Bundle;
+import android.preference.*;
 import android.view.*;
 import android.widget.*;
 import com.google.android.gms.common.*;
 import com.google.android.gms.common.api.*;
 import com.google.android.gms.plus.*;
 import com.google.android.gms.plus.model.people.*;
-import com.koushikdutta.ion.*;
-
 
 public class MainActivity extends Activity implements
         GoogleApiClient.ConnectionCallbacks,
@@ -21,7 +20,6 @@ public class MainActivity extends Activity implements
     MediaPlayer mySound;
 
     public final static String EXTRA_MESSAGE = "com.mycompany.myfirstapp.MESSAGE";
-
     /* Request code used to invoke sign in user interactions. */
     private static final int RC_SIGN_IN = 0;
     /* Client used to interact with Google APIs. */
@@ -57,16 +55,16 @@ public class MainActivity extends Activity implements
 
         findViewById(R.id.sign_in_button).setOnClickListener(this);
 
-        ImageView profileImage = (ImageView) findViewById(R.id.profile_image);
+        //ImageView profileImage = (ImageView) findViewById(R.id.profile_image);
 
-        /*Ion.with(profileImage)
-                .fitCenter()
-                .load("http://media.salon.com/2013/05/original.jpg");*/
+        //new DownloadImageTask(profileImage).execute("http://media.salon.com/2013/05/original.jpg");
 
-        new DownloadImageTask(profileImage).execute("http://media.salon.com/2013/05/original.jpg");
-
-        mySound = MediaPlayer.create(this, R.raw.adje_gangsta);
-        mySound.start();
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+        boolean prefMusic = sharedPref.getBoolean("pref_music", true);
+        if(prefMusic) {
+            mySound = MediaPlayer.create(this, R.raw.adje_gangsta);
+            mySound.start();
+        }
         }
 
     protected void onPause(){
@@ -147,14 +145,9 @@ public class MainActivity extends Activity implements
             personPhoto = currentPerson.getImage();
             //String personGooglePlusProfile = currentPerson.getUrl();
 
-            /*
-            ImageView profileImage = (ImageView) findViewById(R.id.profile_image);
 
-            Ion.with(profileImage)
-                    .placeholder(R.drawable.image_placeholder)
-                    .error(R.drawable.image_not_found)
-                    .load(currentPerson.getImage().getUrl());
-            */
+            ImageView profileImage = (ImageView) findViewById(R.id.profile_image);
+            new DownloadImageTask(profileImage).execute(currentPerson.getImage().getUrl());
         }
 
         Toast.makeText(this, personName + " is connected!", Toast.LENGTH_LONG).show();
