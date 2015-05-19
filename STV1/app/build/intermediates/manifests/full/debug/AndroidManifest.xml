@@ -18,7 +18,7 @@
         android:label="STV"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="com.kilobolt.stvGame.SampleGame"
+            android:name="com.evert.stvGame.SampleGame"
             android:configChanges="keyboard|keyboardHidden|orientation"
             android:label="STV"
             android:screenOrientation="landscape" >

@@ -45,7 +45,7 @@ ADDED from AndroidManifest.xml:14:5
 		ADDED from AndroidManifest.xml:16:9
 	android:theme
 		ADDED from AndroidManifest.xml:18:9
-activity#com.kilobolt.stvGame.SampleGame
+activity#com.evert.stvGame.SampleGame
 ADDED from AndroidManifest.xml:19:9
 	android:screenOrientation
 		ADDED from AndroidManifest.xml:23:13
