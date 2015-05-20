@@ -18,6 +18,7 @@ public class MainActivity extends Activity implements
         View.OnClickListener {
 
     MediaPlayer mySound;
+    boolean blSettings = false;
 
     public final static String EXTRA_MESSAGE = "com.mycompany.myfirstapp.MESSAGE";
     /* Request code used to invoke sign in user interactions. */
@@ -43,6 +44,10 @@ public class MainActivity extends Activity implements
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+        boolean prefMusic = sharedPref.getBoolean("pref_music", true);
+
         setContentView(R.layout.activity_main);
 
         mGoogleApiClient = new GoogleApiClient.Builder(this)
@@ -59,30 +64,28 @@ public class MainActivity extends Activity implements
 
         //new DownloadImageTask(profileImage).execute("http://media.salon.com/2013/05/original.jpg");
 
-        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
-        boolean prefMusic = sharedPref.getBoolean("pref_music", true);
         if(prefMusic) {
-            mySound = MediaPlayer.create(this, R.raw.adje_gangsta);
-            mySound.start();
+           mySound = MediaPlayer.create(this, R.raw.joinmestevie);
+           mySound.start();
         }
         }
-
-    protected void onPause(){
-        super.onPause();
-        mySound.release();
-    }
 
     @Override
     protected void onStart() {
         super.onStart();
         mGoogleApiClient.connect();
+        blSettings = false;
     }
 
     @Override
     protected void onStop() {
         super.onStop();
         mGoogleApiClient.disconnect();
-        mySound.release();
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+        boolean prefMusic = sharedPref.getBoolean("pref_music", true);
+        if(!blSettings && prefMusic) {
+            mySound.release();
+        }
     }
 
     @Override
@@ -178,6 +181,7 @@ public class MainActivity extends Activity implements
     }
 
     public void openPreferences(View view){
+        blSettings = true;
         Intent intent = new Intent(this, Settings.class);
         startActivity(intent);
     }
